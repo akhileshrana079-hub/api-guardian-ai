@@ -1,11 +1,10 @@
-const slackApp = require("../config/slack.config");
+const { App } = require("@slack/bolt");
 
-slackApp.message(async ({ message, say }) => {
-
-    if (message.subtype) return;
-
-    await say("Hello! I'm API Guardian AI 🤖");
-
+const app = new App({
+  token: process.env.SLACK_BOT_TOKEN,
+  appToken: process.env.SLACK_APP_TOKEN,
+  signingSecret: process.env.SLACK_SIGNING_SECRET,
+  socketMode: true
 });
 
-module.exports = slackApp;
+module.exports = app;

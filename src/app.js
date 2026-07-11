@@ -1,12 +1,13 @@
 require("dotenv").config();
+
 const express = require("express");
+const slackApp = require("./slack/slack.service");
+
+require("./slack/message.handler");
+
 const app = express();
 
-const aiRoutes = require("./routes/ai.routes");
-
 app.use(express.json());
-app.use("/api/ai", aiRoutes);
-
 
 app.get("/", (req, res) => {
     res.json({
@@ -17,6 +18,12 @@ app.get("/", (req, res) => {
 
 const PORT = process.env.PORT || 3000;
 
-app.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`);
-});
+(async () => {
+    await slackApp.start();
+
+    console.log("⚡ Slack Bolt running in Socket Mode");
+
+    app.listen(PORT, () => {
+        console.log(`🚀 Express Server running on ${PORT}`);
+    });
+})();
