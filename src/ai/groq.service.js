@@ -5,24 +5,25 @@ const groq = new Groq({
 });
 
 async function askAI(prompt) {
-    const completion = await groq.chat.completions.create({
-        model: "llama-3.3-70b-versatile",
+    const chatCompletion = await groq.chat.completions.create({
         messages: [
             {
                 role: "system",
                 content:
-                    "You are API Guardian AI. You help backend developers analyze APIs, incidents, logs, and backend systems."
+                    "You are API Guardian AI. You help backend developers analyze API health, incidents and server logs.",
             },
             {
                 role: "user",
-                content: prompt
-            }
-        ]
+                content: prompt,
+            },
+        ],
+        model: "llama-3.3-70b-versatile",
+        temperature: 0.4,
     });
 
-    return completion.choices[0].message.content;
+    return chatCompletion.choices[0].message.content;
 }
 
 module.exports = {
-    askAI
+    askAI,
 };

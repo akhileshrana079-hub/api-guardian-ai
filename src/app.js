@@ -5,9 +5,13 @@ const slackApp = require("./slack/slack.service");
 
 require("./slack/message.handler");
 
+const monitorRoutes = require("./routes/monitor.routes");
 const app = express();
 
 app.use(express.json());
+
+app.use("/api", monitorRoutes);
+
 
 app.get("/", (req, res) => {
     res.json({

@@ -1,8 +1,18 @@
 const app = require("./slack.service");
+const { askAI } = require("../ai/groq.service");
 
 app.message(async ({ message, say }) => {
-    console.log("Message received:");
-    console.log(message);
+    if (message.subtype) return;
 
-    await say(`👋 Hello ${message.user}, I received: "${message.text}"`);
+    console.log("User:", message.text);
+
+    try {
+        const response = await askAI(message.text);
+
+        await say(response);
+    } catch (error) {
+        console.error(error);
+
+        await say("Something went wrong while talking to AI.");
+    }
 });
