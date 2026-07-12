@@ -322,7 +322,7 @@ export default function Dashboard() {
       
       <div className="mt-10">
 
-        <ChatPanel />
+        <ChatPanel health={health} />
 
       </div>
 

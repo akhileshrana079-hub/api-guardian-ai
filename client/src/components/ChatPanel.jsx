@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import axios from "axios";
 
-export default function ChatPanel() {
+export default function ChatPanel({ health }) {
   const [message, setMessage] = useState("");
 
   const [messages, setMessages] = useState([
@@ -41,6 +41,7 @@ export default function ChatPanel() {
         "http://localhost:3000/api/ai/chat",
         {
           message: prompt,
+          health,
         }
       );
 
