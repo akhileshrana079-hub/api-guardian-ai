@@ -3,6 +3,7 @@ import axios from "axios";
 
 import StatCard from "../components/StatCard";
 import ChatPanel from "../components/ChatPanel";
+import ChartSection from "../components/ChartSection";
 
 export default function Dashboard() {
   const [health, setHealth] = useState(null);
@@ -317,7 +318,8 @@ export default function Dashboard() {
       </div>
 
       {/* AI Chat */}
-
+      <ChartSection health={health} />
+      
       <div className="mt-10">
 
         <ChatPanel />

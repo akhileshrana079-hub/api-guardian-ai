@@ -3,10 +3,12 @@ const cors = require("cors");
 const express = require("express");
 const slackApp = require("./slack/slack.service");
 
+
 require("./slack/message.handler");
 
 const monitorRoutes = require("./routes/monitor.routes");
 const aiRoutes = require("./routes/ai.routes");
+const monitorSystem = require("./jobs/monitor.job");
 const app = express();
 
 app.use(cors());
@@ -28,7 +30,8 @@ const PORT = process.env.PORT || 3000;
     await slackApp.start();
 
     console.log("⚡ Slack Bolt running in Socket Mode");
-
+    setInterval(monitorSystem, 30000);
+    
     app.listen(PORT, () => {
         console.log(`🚀 Express Server running on ${PORT}`);
     });
