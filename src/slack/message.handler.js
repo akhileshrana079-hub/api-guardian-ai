@@ -1,3 +1,4 @@
+const { buildHomeCard } = require("./blockBuilder");
 const app = require("./slack.service");
 
 const { askAI } = require("../ai/groq.service");
@@ -14,6 +15,13 @@ app.message(async ({ message, say }) => {
 
     try {
 
+        if (text === "menu") {
+            await say({
+            text: "API Guardian AI",
+            blocks: buildHomeCard(),
+        });
+        return;
+}
         // ===== HEALTH REPORT =====
         if (text === "health") {
 
@@ -52,7 +60,6 @@ app.message(async ({ message, say }) => {
 
         const response = await askAI(message.text);
         await say(response);
-
     } catch (error) {
         console.error(error);
         await say("❌ Something went wrong.");
