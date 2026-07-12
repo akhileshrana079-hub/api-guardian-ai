@@ -1,30 +1,8 @@
 const express = require("express");
-
 const router = express.Router();
 
-const { askAI } = require("../ai/groq.service");
+const { chatWithAI } = require("../controllers/ai.controller");
 
-router.get("/ask", async (req, res) => {
-
-    try {
-        const response = await askAI(
-            "Explain REST APIs in simple words."
-        );
-
-        res.json({
-            success: true,
-            response
-        });
-
-    } catch (error) {
-        console.log(error);
-        res.status(500).json({
-            success: false,
-            message: error.message
-        });
-
-    }
-
-});
+router.post("/chat", chatWithAI);
 
 module.exports = router;
