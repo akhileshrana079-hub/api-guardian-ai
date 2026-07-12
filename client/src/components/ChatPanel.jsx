@@ -37,8 +37,8 @@ export default function ChatPanel({ health }) {
     setLoading(true);
 
     try {
-      const res = await axios.post(
-        "http://localhost:3000/api/ai/chat",
+      const API = import.meta.env.VITE_API_URL;
+      const res = await axios.post(`${API}/api/ai/chat`,
         {
           message: prompt,
           health,

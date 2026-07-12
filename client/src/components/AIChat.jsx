@@ -26,8 +26,9 @@ export default function AIChat() {
         setLoading(true);
 
         try {
+            const API = import.meta.env.VITE_API_URL;
             const res = await axios.post(
-                "http://localhost:3000/api/ai/chat",
+                `${API}/api/ai/chat`,
                 {
                     message: question,
                 }

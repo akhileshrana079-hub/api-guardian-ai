@@ -10,7 +10,8 @@ export default function Dashboard() {
 
   async function fetchHealth() {
     try {
-      const res = await axios.get("http://localhost:3000/api/health");
+      const API = import.meta.env.VITE_API_URL;
+      const res = await axios.get(`${API}/api/health`);
       setHealth(res.data);
     } catch (err) {
       console.log(err);
