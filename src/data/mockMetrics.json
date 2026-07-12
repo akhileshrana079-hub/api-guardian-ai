@@ -1,0 +1,25 @@
+{
+  "systemHealth": "Healthy",
+  "totalRequests": 52341,
+  "successRate": 99.68,
+  "avgLatency": 168,
+  "cpuUsage": 57,
+  "memoryUsage": 63,
+  "endpointMetrics": [
+    {
+      "endpoint": "/api/payments",
+      "latency": 487,
+      "errors": 8
+    },
+    {
+      "endpoint": "/api/orders",
+      "latency": 261,
+      "errors": 2
+    },
+    {
+      "endpoint": "/api/users",
+      "latency": 114,
+      "errors": 0
+    }
+  ]
+}
